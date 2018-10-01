@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="utf-8">
+      <title>Politicamente</title>
+      <!-- metatags -->
+      <meta name="description" content="Politicamente">
+      <meta name="keywords" content="politicos, eleicao, tse, candidatos, relacao, governo brasileiro, brasil">
+      <meta name="author" content="Danilo Carvalho">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+      <!-- facebook metatags -->
+      <meta property="og:locale" content="pt_BR">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="http://www.politicamente.com.br">
+      <meta property="og:title" content="Os vingadores - guerra infinita">
+      <meta property="og:site_name" content="Politicamente">
+      <meta property="og:description" content="Relação de politicos candidatos.">
+      <meta property="og:image" content="http://www.politicamente.com.br/assets/img/capa.jpg">
+      <meta property="og:image:type" content="image/jpeg">
+      <meta property="og:image:width" content="400">
+      <meta property="og:image:height" content="200">
+      <!-- favicon -->
+      <link rel="icon" href="src/assets/img/favicon.ico" type="image/x-icon">
+      <!-- main style sheet link -->
+      <link rel="stylesheet" href="src/assets/css/main.css"  media="all">
+   </head>
+   <body>
+
+      
+      <div class="header-container">
+         <header id="header" class="wrapper">
+            <div class="mainlogo">
+               <a href="index.html" title="Politicamente">Políticamente</a>
+               <small>Conheça seu candidato</small>
+            </div>
+            <nav id="mainmenu">
+               <ul>
+                  <li><a class="activemenu" href="index.html">Página Inicial</a></li>
+                  <li><a href="sobre.html">Sobre o Politicamente</a></li>
+               </ul>
+            </nav>
+            <nav id="mobile-nav">
+               <div class="menu-toggle">
+                  <div class="hamburger"></div>
+               </div>
+               <ul>
+                  <li><a href="index.html">Página Inicial</a></li>
+                  <li><a href="sobre.html">Sobre</a></li>
+               </ul>
+            </nav>
+         </header>   
+      </div>
+
+
+      <div class="main-container">
+
+
+
+         <section id="apresentacao" class="wrapper">
+            <div class="row">
+
+               <div class="col-2">
+                  <img width="100%" src="src/assets/img/politicamente-frente.jpg">
+               </div>
+
+               <div class="col-4">
+                 
+                  <h1 class="main-title">O Políticamente ajuda você a conhecer melhor seu candidato.</br>Nessas eleições, não faça feio, vote consciente.</h1>
+               </div>
+
+            </div>
+         </section>
+
+
+
+
+
+         <section id="candidatos" class="wrapper">
+            <div class="row">
+               <hr/>
+              
+               <div class="col-6">
+                  <h1 style="font-size: 2rem;">Quem deseja conhecer?</h1>
+
+            </div>
+
+
+            <div class="row"> 
+            <div id="app">
+
+
+        
+            <label>Selecione:</label>
+
+            <select v-model="configs.porCargo">
+            <option value="1">Presidente</option>
+            <option value="2">Governador</option>
+            <option value="3">Senador</option>
+            <option value="4">Deputado Federal</option>
+            <option value="5">Deputado Estadual</option>
+            </select>
+
+      
+
+
+
+           
+
+            <div class="form-group">
+            <label>Ordernar por:</label>
+            <select class="form-control" v-model="configs.orderBy">
+            <option value="nomeUrna">Nome</option>
+            <option value="numero">Número</option>
+            </select>
+            </div>
+
+
+            <div class="form-group">
+            <label>Orderm:</label>
+            <select class="form-control" v-model="configs.order">
+            <option value="asc">Crescente</option>
+            <option value="desc">Decrescente</option>
+            </select>
+            </div>
+
+
+            <div class="form-group">
+            <label>Filtrar por nome:</label>
+            <input type="text" class="form-control" placeholder="Escreva o nome do candidato" v-model="configs.filter">
+            </div>
+
+ 
+           
+               <div v-for="candidato in listaTodos" :title="candidato.nomeUrna" class="col-2 avatar" v-bind:key="candidato.id">
+                  <button v-on:click="detalhesCandidato(candidato.id)">
+                  <img width="100px;" src="src/assets/img/default-user.png">
+                  <h3> {{ candidato.nomeUrna }} - {{ candidato.partido.sigla }}</h3>
+                  </button>
+
+              <!--     <router-link :to="{ name:'candidato', params:{id:candidato.id} }">{{ candidato.nomeUrna }}</router-link> -->
+               </div>
+
+
+               
+
+             
+
+
+
+
+
+
+
+
+            </div>
+            </div>
+     </section>
+
+
+         
+      </div>
+
+
+
+      <div class="footer-container">
+         <footer id="foooter" class="wrapper">
+           
+            <div class="footer-credits">
+               <ul>
+                  <li><a href="#">Sobre o Politicamente</a></li>
+                  <li><a href="#">Contato</a></li>
+                  <li><a href="#">Termos de Uso</a></li>
+                  <li><a href="#">Política de Privacidade</a></li>
+               </ul>
+               <br/> 
+               <span>
+               <small>© 2018 Politicamente. Todos direitos reservados</small>
+               </span>
+            </div>
+         </footer>
+      </div>
+
+      <script src="src/assets/js/lodash.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="node_modules/vue/dist/vue.js"></script>
+      <script src="src/assets/js/main.js"></script>
+      <script src="https://cdn.jsdelivr.net/vuejs-paginator/2.0.0/vuejs-paginator.min.js"></script>
+      <!-- jquery -->
+      <script src="http://code.jquery.com/jquery.min.js"></script>
+      <!-- header scroll-->
+      <script src="src/assets/js/headeronscroll.min.js"></script>
+      <!-- menu toggle-->
+      <script src="src/assets/js/menutoggle.js"></script>
+   </body>
+</html><!-- made with s2 by danilo carvalho -->
